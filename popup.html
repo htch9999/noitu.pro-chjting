@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 450px;
+      max-height: 600px;
+      padding: 0;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    h2 {
+      margin: 0 0 5px 0;
+      font-size: 22px;
+    }
+    .subtitle {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    .content {
+      padding: 15px;
+      max-height: 450px;
+      overflow-y: auto;
+    }
+    .section {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .section h3 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .info-item {
+      background: rgba(0,0,0,0.2);
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .info-label {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-bottom: 5px;
+    }
+    .info-value {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .logs-container {
+      background: rgba(0,0,0,0.3);
+      border-radius: 6px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    .log-item {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px;
+    }
+    .log-item:last-child {
+      border-bottom: none;
+    }
+    .log-time {
+      opacity: 0.6;
+      font-size: 10px;
+    }
+    .log-message {
+      margin-top: 3px;
+    }
+    .log-info { color: #4A9EFF; }
+    .log-success { color: #4CAF50; }
+    .log-error { color: #F44336; }
+    .log-warning { color: #FF9800; }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: #4CAF50;
+    }
+    .btn-primary:hover {
+      background: #45a049;
+    }
+    .btn-danger {
+      background: #F44336;
+    }
+    .btn-danger:hover {
+      background: #D32F2F;
+    }
+    .status {
+      text-align: center;
+      font-size: 12px;
+      padding: 10px;
+      margin-top: 10px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 6px;
+    }
+    .empty-logs {
+      text-align: center;
+      padding: 30px;
+      opacity: 0.6;
+      font-size: 13px;
+    }
+    .credits {
+      text-align: center;
+      font-size: 11px;
+      padding: 12px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      opacity: 0.7;
+      margin-top: 10px;
+    }
+    .credits a {
+      color: #4A9EFF;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .credits a:hover {
+      color: #7CC5FF;
+      text-decoration: underline;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.1);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>NoiTu.Pro - Internal Cheat </h2>
+    <div class="subtitle">Version 2.0.7</div>
+  </div>
+
+  <div class="content">
+    <div class="section">
+      <h3>📊 Thống Kê</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">📚 Từ trong từ điển</div>
+          <div class="info-value" id="word-count">...</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">💾 Kích thước</div>
+          <div class="info-value" id="storage-size">...</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">✅ Từ đã sử dụng</div>
+          <div class="info-value" id="used-count">0</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">⏰ Cập nhật</div>
+          <div class="info-value" id="last-update" style="font-size:12px;">...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📝 Activity Logs</h3>
+      <div class="logs-container" id="logs-container">
+        <div class="empty-logs">Chưa có logs nào...</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>⚙️ Quản Lý</h3>
+      <button id="reload-dict" class="btn-primary">🔄 Tải Lại Từ Điển</button>
+      <button id="clear-logs">🗑️ Xóa Logs</button>
+      <button id="clear-data" class="btn-danger">⚠️ Xóa Toàn Bộ Dữ Liệu</button>
+    </div>
+
+    <div class="status" id="status-text">
+      ✅ Extension đang hoạt động
+    </div>
+
+    <div class="credits">
+      👨‍💻 Made by <strong>htch9999</strong> | 
+      <a href="https://github.com/htch9999" target="_blank">GitHub</a> | 
+      Discord: <strong>htch9999</strong>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
