@@ -33,7 +33,7 @@ Extension Chrome tự động chơi game nối từ tại **NoiTu.Pro**
 ### 3. Tải Từ Điển (Bắt buộc)
 1. Nhấn icon extension
 2. Nhấn **"🔄 Tải Lại Từ Điển"**
-3. Đợi ~5 giây đến khi thấy: `✅ Đã tải thành công 13,000+ từ`
+3. Đợi ~5 giây đến khi thấy: `✅ Đã tải thành công 52,000+ từ`
 
 ---
 
